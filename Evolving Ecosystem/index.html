@@ -1,0 +1,117 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Evolving Ecosystem</title>
+  <meta name="description" content="Life Simulator.">
+
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+  <div class="wrapper">
+  <canvas width="502" height="502" id="plantsCanvas"></canvas> <br>
+  <canvas width="502" height="502" id="canvas"></canvas> <br>
+  <canvas width="2" height="2" id="cacheCanvas"></canvas> <br>
+  <div class="interface">
+  <div class="counter">
+  <button class = "button" onclick="playPause()">Play/Pause</button> 
+  <button title = "Disabling rendering improves performance." class = "button" onclick="renderHide()">Render/Hide</button> 
+  <br>
+  Speed/Time: <select id = "time_changer" class = "button" onchange="changeTime(value)">
+    <option value = 1> 1x </option>
+    <option value = 2> 2x </option>
+    <option value = 4> 4x </option>
+    <option value = 8> 8x </option>
+    <option value = 16> 16x </option>
+    <option value = 32> 32x </option>
+    <option value = 64> 64x </option>
+    <option value = 128> 128x </option>
+    <option value = 0.5> 1/2x </option>
+    <option value = 0.25> 1/4x </option>
+    <!--option value = 0.125> 1/8x </option-->
+  </select>/<span id="time_total">0</span> <br>
+  Alive/Dead <br>
+  Creatures: <span id="creature_total">0</span>/<span id = "deaths_creatures">0</span> <br>
+  Plants: <span id="plant_total">0</span>/<span id = "deaths_plants">0</span> <br>
+  </div>
+  <!--button class = "button" onclick="pathsReal()">Paths/Real</button--> 
+  <!--input type="range" class = "slider" id = "simulationSpeed" name="simulationSpeed" min="1" max="1000" oninput="updateSimulationSpeed(1001 - this.value);">
+  </input-->
+  Perform an Event: 
+  <select id = "event_creator" class = "button" onchange="eventCreator(value);">
+    <option value = "nil"> (event) </option>
+    <option value = "great bloom" title = "Spawns a large number of plants."> Great Bloom </option>
+    <option value = "forest"> Center Forest: Toggle Plant Spawning </option>
+    <option value = "foodlines"> Lines: Toggle Plant Spawning </option>
+    <option value = "ambientfood"> Everywhere: Toggle Plant Spawning </option>
+    <!--option value = "famine"> Famine </option-->
+    <option value = "randomCreature"> Spawn Random Creature </option>
+    <option value = "populate"> !Populate RNG Creatures </option>
+    <option value = "mass extinction" title = "Kills most creatures, leaves few survivors."> Mass Extinction </option>
+    <option value = "reset"> !Full Reset </option>
+  </select>
+  <!--button class = "button" onclick="toggleInspector()">View Oldest Creature</button-->
+  <br> Inspect a Creature: <br>
+  <select id = "creature_monitor" class = "button" onchange="changeInspectorParameter(value);">
+    <option value = "nil"> Hide </option>
+    <option value = "find"> Find </option>
+    <option value = "age"> Age </option>
+    <option value = "maxAge"> Max Age </option>
+    <option value = "moveSpeed"> Speed </option>
+    <option value = "maxSpeed"> maxSpeed </option>
+    <!--option value = "maxLifespan"> Lifespan </option-->
+    <option value = "energy"> Energy </option>
+    <!--option value = "mutability"> Least Mutability </option-->
+    <option value = "generation"> Generation </option>
+    <option value = "mutations"> Mutations </option>
+    <option value = "children"> Children </option>
+    <!--option value = "reproductionChance"> Reproduce Chance </option-->
+    <!--option value = "energyToReproduce"> Energy to Reproduce </option-->
+    <option value = "id"> Id (Youngest) </option>
+    <!--option value = "directionalChangeChance"> Least Dir Change </option-->
+    </select>
+  <select id = "creature_estimator" class = "button" onchange="changeInspectorParameter();bestWorst(value);">
+    <option value = "best"> Highest </option>
+    <option value = "worst"> Lowest </option>
+    <option value = "median"> Median </option>
+    <option value = "random"> Random </option>
+    </select>
+  <br>
+  <div class="inspector" id = "inspector">
+  <button class = "button" id = "cameraFollow" title = "Zooms and follows selected creature." onclick="cameraToggle()">Follow/Unfollow</button>
+  <input title = "Enter creature ID to inspect/follow." type="text" id="follow" value = "Id" size="7"> 
+  <button class = "button" id = "followButton" value = "find" onclick="changeInspectorParameter(value)">Find</button>
+  <br>
+    <!--svg class="draw" width="500px" height="500px"/-->
+  <span id="creature_inspector" class = "inspector"></span>
+  </div>
+  </div>
+  </div>
+
+  <!--div class="container">
+    <div class="row">
+    </div>
+  </div-->
+  <!-- Lodash is used for its deep cloning function -->
+  <script src="assets/libraries/lodash.js"></script>
+  <script src="assets/libraries/neataptic.js"></script>
+  <script src="assets/scripts/neural.js"></script>
+  <script src="assets/libraries/quadtree.js"></script>
+  <script src="assets/libraries/camera.js"></script>
+  <script src="assets/scripts/utilities.js"></script>
+  <script src="assets/scripts/updates.js"></script>
+  <script src="assets/scripts/inspect.js"></script>
+  <script src="assets/scripts/draw.js"></script>
+  <script src="assets/scripts/reproduce.js"></script>
+  <script src="assets/scripts/movement.js"></script>
+  <script src="assets/scripts/mutate.js"></script>
+  <script src="assets/scripts/entities.js"></script>
+  <script src="assets/scripts/plants.js"></script>
+  <script src="assets/scripts/collision.js"></script>
+  <script src="assets/scripts/render.js"></script>
+</body>
+</html>
