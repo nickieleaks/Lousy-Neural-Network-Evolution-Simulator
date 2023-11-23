@@ -1,5 +1,5 @@
 # EvolvingEcosystem
-neural network evolving entities
+Lousy Neural Network Evolution Simulator
 
 Tested and runs in Google Chrome. A simple prototype with Javascript, HTML Canvas, and CSS. Heavily inspired by evolution and life simulations like Gridworld,  The Bibites, and  LSES. For much more complex behaviour, do check them out, and others.
 
